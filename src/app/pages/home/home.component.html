@@ -1,0 +1,30 @@
+<section>
+    <div>
+      <h2>Add task</h2>
+      <form (ngSubmit)="addTask()" #taskForm="ngForm">
+        <input [(ngModel)]="task.title" name="title" required />
+        <br><br>
+        <textarea [(ngModel)]="task.description" name="description"></textarea>
+        <br><br>
+        <button type="submit" [disabled]="!taskForm.form.valid">Add Task</button>
+      </form>    
+    </div>
+    <br>
+    <hr>
+    <div>
+      <h2>List tasks</h2>
+      <ul>
+        @for (task of arr_tasks; track $index) {
+        <li>
+          <h3>{{task.title}}</h3>
+          <p>{{task.description}}</p>
+          <p>{{(task.completed)? 'Complete':'Pending'}}</p>
+          <div>
+            <button (click)="deleteTask(task.id)">Delete</button>
+            <button (click)="completeTask(task.id)">Complete</button>
+          </div>
+        </li>
+        }
+      </ul>
+    </div>
+  </section>
